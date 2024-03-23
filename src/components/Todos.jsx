@@ -2,6 +2,7 @@ import { useRecoilState } from "recoil";
 import { todoState } from "../state/atoms/Todo";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import Todo from "./Todo";
 
 function Todos() {
   const [todos, setTodos] = useRecoilState(todoState);
@@ -33,6 +34,10 @@ function Todos() {
       />
       <button onClick={addTodo}>Add Todo</button>
       <button onClick={clearTodos}>Delete Todos</button>
+
+      {todos.map((todo) => {
+        return <Todo key={todo.id} text={todo.text} id={todo.id} />;
+      })}
     </main>
   );
 }
